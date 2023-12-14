@@ -254,17 +254,19 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  // let result = 0;
-  // let startNumber = 1;
-  // console.log("index " + index);
-  // for (let i = 0; i < index; i += 1) {
-  //   result += startNumber;
-  //   startNumber = result;
-  //   console.log(result);
-  //   console.log(startNumber);
-  // }
-  // return result;
+function getFibonacciNumber(index) {
+  if (index <= 1) {
+    return index;
+  }
+  let currentNumber = 0;
+  let firstNumber = 0;
+  let secondNumber = 1;
+  for (let i = 2; i <= index; i += 1) {
+    currentNumber = firstNumber + secondNumber;
+    firstNumber = secondNumber;
+    secondNumber = currentNumber;
+  }
+  return currentNumber;
 }
 
 /**
@@ -317,11 +319,13 @@ function getSumOfDigits(num) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  // if (Math.sqrt(num) === 2) {
-  //   return true;
-  // } else {
-  // }
+function isPowerOfTwo(num) {
+  for (let i = 0; i <= num; i += 1) {
+    if (2 ** i === num) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -547,8 +551,8 @@ function roundToNearestInteger(number) {
  * 5.4  => 5
  * -5.5 => -5
  */
-function getIntegerPartNumber(/* number */) {
-  throw new Error('Not implemented');
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
 }
 
 /**
@@ -564,7 +568,7 @@ function getIntegerPartNumber(/* number */) {
  * 0.1, 0.2, 0.3 => 0.6
  */
 function getSumOfNumbers(x1, x2, x3) {
-  return x1 + x2 + x3;
+  return (x1 + x2 + x3).toPrecision(1);
 }
 
 /**
@@ -595,8 +599,10 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  const distance = max - min;
+  const randomDistance = Math.random() * distance;
+  return Math.round(min + randomDistance);
 }
 
 /**
@@ -626,8 +632,12 @@ function getHypotenuse(a, b) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  const result = [];
+  for (let i = 1; i <= Math.abs(number); i += 2) {
+    result.push(i);
+  }
+  return result.length;
 }
 
 module.exports = {
